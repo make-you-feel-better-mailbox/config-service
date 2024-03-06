@@ -1,0 +1,22 @@
+
+server:
+  port: 8081
+
+spring:
+  cloud:
+    config:
+      server:
+        git:
+          uri: https://github.com/make-you-feel-better-mailbox/service-configs.git
+          default-label: main
+
+
+# actuator ??
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+  endpoint:
+    shutdown:
+      enabled: true
