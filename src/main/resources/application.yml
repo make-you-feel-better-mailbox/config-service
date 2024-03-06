@@ -2,6 +2,8 @@ server:
   port: 8888
 
 spring:
+  application:
+    name: config-service
   cloud:
     config:
       server:
@@ -9,8 +11,17 @@ spring:
           uri: https://github.com/make-you-feel-better-mailbox/service-configs.git
           default-label: main
 
+eureka:
+  instance:
+    instance-id: ${spring.cloud.client.hostname}:${spring.application.instance_id:${random.value}}
+  client:
+    register-with-eureka: true
+    fetch-registry: true
+    service-url:
+      defaultZone: http://127.0.0.1:8761/eureka
 
-# actuator ??
+
+# actuator
 management:
   endpoints:
     web:
